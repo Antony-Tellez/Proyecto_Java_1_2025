@@ -19,27 +19,32 @@ public class Menu {
 
         while (true) {
 
-            int choice = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1: {
-                    System.out.println("Se ejecuta la clase Codificador");
-                    return;
-                }
-                case 2: {
-                    System.out.println("Se ejecuta la clase Decodificador");
-                    return;
-                }
+                switch (choice) {
+                    case 1: {
+                        Codificador.iniciarCodificacion(name);
+                        return;
+                    }
+                    case 2: {
+                        System.out.println("Se ejecuta la clase Decodificador");
+                        return;
+                    }
 
-                case 3: {
-                    System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
-                    System.exit(0);
-                    break;
+                    case 3: {
+                        System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
+                        System.exit(0);
+                        break;
+                    }
+                    default: {
+                        System.out.println("Opción no válida. Por favor, ingrese un número del 1 al 3.");
+                        break;
+                    }
                 }
-                default: {
-                    System.out.println("Opción no válida. Por favor, elija de nuevo una opción.");
-                    break;
-                }
+            } else {
+                System.out.println("Entrada no válida. Por favor, ingrese un número del 1 al 3.");
+                scanner.next();
             }
         }
     }
