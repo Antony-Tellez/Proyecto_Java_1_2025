@@ -19,11 +19,11 @@ public class Menu_Final {
 
                 switch (choice) {
                     case 1: {
-                        System.out.println("Se ejecuta la clase Codificador");
+                        Codificador.iniciarCodificacion(name);
                         return;
                     }
                     case 2: {
-                        System.out.println("Se ejecuta la clase Decodificador");
+                        Decodificador.iniciarDecodificacion(name);
                         return;
                     }
 

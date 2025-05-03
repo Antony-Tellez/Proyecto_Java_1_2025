@@ -28,7 +28,7 @@ public class Menu {
                         return;
                     }
                     case 2: {
-                        System.out.println("Se ejecuta la clase Decodificador");
+                        Decodificador.iniciarDecodificacion(name);
                         return;
                     }
 

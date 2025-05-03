@@ -27,24 +27,26 @@ public class Codificador {
             scanner.nextLine();
 
             if (opcionClave == 1) {
-                System.out.println("¿Cuál es la clave que deseas utilizar? ");
-                if (scanner.hasNextInt()) {
-                    clave = scanner.nextInt();
-                    scanner.nextLine();
+                while (true) {
+                    System.out.println("\n¿Cuál es la clave que deseas utilizar? ");
+                    if (scanner.hasNextInt()) {
+                        clave = scanner.nextInt();
+                        scanner.nextLine();
 
-                    if (clave < 0) {
-                        System.out.println("\nNota: La clave es negativa. El texto será codificado con un desplazamiento hacia la izquierda.");
-                    } else if (clave == 0) {
-                        System.out.println("\nAdvertencia: La clave es 0. El texto no se modificará.");
+                        if (clave < 0) {
+                            System.out.println("\nNota: La clave es negativa. El texto será codificado con un desplazamiento hacia la izquierda.");
+                        } else if (clave == 0) {
+                            System.out.println("\nAdvertencia: La clave es 0. El texto no se modificará.");
+                        }
+
+                        System.out.println("\nMuy bien, la clave a utilizar es: " + clave);
+                        break;
+                    } else {
+                        System.out.println("Entrada no válida. Debes ingresar un número entero para la clave.");
+                        scanner.nextLine();
                     }
-
-                    System.out.println("\nMuy bien, la clave a utilizar es: " + clave);
-                    break;
-                } else {
-                    System.out.println("Entrada no válida. Debes ingresar un número entero para la clave.");
-                    scanner.nextLine();
                 }
-
+                break;
             } else if (opcionClave == 2) {
                 System.out.println("Está bien, se usará la clave por defecto: 2");
                 break;
@@ -54,7 +56,7 @@ public class Codificador {
         }
 
         System.out.println("\n¿Cómo prefiere subir el texto al programa?");
-        System.out.println("1. Escrito en la terminal (Se recomienda para textos pequeños)\n" +
+        System.out.println("1. Escrito en la terminal (Se recomienda para textos de un párrafo)\n" +
                 "2. Subirlo con un archivo .txt (Se recomienda si el texto incluye más de un párrafo)\n" +
                 "Escriba el número de su elección: ");
 
