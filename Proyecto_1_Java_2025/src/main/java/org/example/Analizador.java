@@ -29,7 +29,9 @@ public class Analizador {
         Scanner scanner = new Scanner(System.in);
         String textoOriginal = "";
 
-        System.out.println("\n¿Cómo prefiere subir el texto al programa?");
+        System.out.println("Haz elegido decoificar un texto sin una clave específica:\n" +
+                "El propio programa se encargará de realizar distintas decodificaciones y devolverá el resultado más pertinente.\n" +
+                "¿Cómo prefiere subir el texto al programa?");
         System.out.println("1. Escrito en la terminal (Se recomienda para textos de un párrafo)\n" +
                 "2. Subirlo con un archivo .txt (Se recomienda si el texto incluye más de un párrafo)\n" +
                 "Escriba el número de su elección: ");
