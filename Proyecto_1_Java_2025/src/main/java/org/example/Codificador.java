@@ -75,6 +75,12 @@ public class Codificador {
             if (opcionEntrada == 1) {
                 System.out.println("\nMuy bien, por favor escriba el texto a codificar:");
                 textoOriginal = scanner.nextLine();
+
+                while (textoOriginal.trim().isEmpty()) {
+                    System.out.println("El texto ingresado está vacío. Por favor, ingrésalo nuevamente:");
+                    textoOriginal = scanner.nextLine();
+                }
+
                 break;
 
             } else if (opcionEntrada == 2) {
@@ -84,6 +90,48 @@ public class Codificador {
 
                     try {
                         textoOriginal = new String(Files.readAllBytes(Paths.get(rutaArchivo)));
+
+                        if (textoOriginal.trim().isEmpty()) {
+                            while (true) {
+                                System.out.println("El archivo ingresado está vacío. ¿Desea intentarlo nuevamente? (Sí/No): ");
+                                String respuesta = scanner.nextLine().trim();
+
+                                if (respuesta.equalsIgnoreCase("Sí") || respuesta.equalsIgnoreCase("Si")) {
+                                    break;
+                                } else if (respuesta.equalsIgnoreCase("No")) {
+
+                                    System.out.println("\n¿Desea seguir usando el programa?" +
+                                            "\n1. Sí" +
+                                            "\n2. No" +
+                                            "\nPor favor escriba 1 o 2 en base a su respuesta");
+
+                                    while (true) {
+
+                                        if (!scanner.hasNextInt()) {
+                                            System.out.println("Entrada no válida. Por favor, escriba 1 o 2.");
+                                            scanner.nextLine();
+                                            continue;
+                                        }
+
+                                        int continuar = scanner.nextInt();
+                                        scanner.nextLine();
+
+                                        if (continuar == 1) {
+                                            Menu_Final.showMenu(name);
+                                            return;
+                                        } else if (continuar == 2) {
+                                            System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
+                                            System.exit(0);
+                                        } else {
+                                            System.out.println("Opción no válida. Escriba 1 o 2.");
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("Respuesta no válida. Por favor, escribe Sí o No.");
+                                }
+                            }
+                            continue;
+                        }
                         System.out.println("Documento encontrado correctamente, procediendo con la codificación...");
                         break;
                     } catch (IOException e) {
@@ -167,8 +215,8 @@ public class Codificador {
                 while (true) {
                     System.out.println("\n¿Desea continuar usando el programa?");
                     System.out.println("1. Sí");
-                    System.out.println("2. No");
-
+                    System.out.println("2. No" +
+                            "\nPor favor escriba 1 o 2 en base a su respuesta");
                     if (!scanner.hasNextInt()) {
                         System.out.println("Entrada no válida. Por favor, escriba 1 o 2.");
                         scanner.next();
@@ -182,7 +230,7 @@ public class Codificador {
                         Menu_Final.showMenu(name);
                         break;
                     } else if (continuar == 2) {
-                        System.out.println("Eso fue todo por hoy, hasta luego " + name + "!");
+                        System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
                         System.exit(0);
                         break;
                     } else {
@@ -195,7 +243,8 @@ public class Codificador {
         }
         System.out.println("\n¿Desea continuar usando el programa?\n" +
                 "1. Sí\n" +
-                "2. No\n");
+                "2. No\n" +
+                "\nPor favor escriba 1 o 2 en base a su respuesta");
         while (true) {
 
             if (!scanner.hasNextInt()) {
@@ -211,7 +260,7 @@ public class Codificador {
                 Menu_Final.showMenu(name);
                 break;
             } else if (continuar == 2) {
-                System.out.println("Eso fue todo por hoy, hasta luego " + name + "!");
+                System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
                 System.exit(0);
             } else {
                 System.out.println("Opción no válida. Escriba 1 o 2.");

@@ -58,23 +58,67 @@ public class Analizador {
                 System.out.println("El texto ingresado está vacío. Por favor, ingresa el texto nuevamente:");
                 textoOriginal = scanner.nextLine();
             }
-        } else {
-            System.out.println("\nEscribe la ruta del archivo (.txt) que deseas analizar:");
-            String rutaArchivo = scanner.nextLine();
-
+        } else if (opcionEntrada == 2){
             boolean archivoValido = false;
+
             while (!archivoValido) {
+                System.out.println("\nEscribe la ruta del archivo (.txt) que deseas analizar:");
+                String rutaArchivo = scanner.nextLine();
+
                 try {
                     textoOriginal = new String(Files.readAllBytes(Paths.get(rutaArchivo)));
+
                     if (textoOriginal.trim().isEmpty()) {
-                        System.out.println("El archivo está vacío. Por favor, ingresa la ruta de un archivo no vacío:");
+                        while (true) {
+                            System.out.println("El archivo ingresado está vacío. ¿Desea intentarlo nuevamente? (Sí/No): ");
+                            String respuesta = scanner.nextLine().trim();
+
+                            if (respuesta.equalsIgnoreCase("Sí") || respuesta.equalsIgnoreCase("Si")) {
+                                break;
+                            } else if (respuesta.equalsIgnoreCase("No")) {
+
+                                System.out.println("\n¿Desea seguir usando el programa?" +
+                                        "\n1. Sí" +
+                                        "\n2. No" +
+                                        "\nPor favor escriba 1 o 2 en base a su respuesta");
+
+                                while (true) {
+
+                                    if (!scanner.hasNextInt()) {
+                                        System.out.println("Entrada no válida. Por favor, escriba 1 o 2.");
+                                        scanner.nextLine();
+                                        continue;
+                                    }
+
+                                    int continuar = scanner.nextInt();
+                                    scanner.nextLine();
+
+                                    if (continuar == 1) {
+                                        Menu_Final.showMenu(name);
+                                        return;
+                                    } else if (continuar == 2) {
+                                        System.out.println("Eso fue todo por hoy, gracias por visitarnos, hasta pronto " + name + "!");
+                                        System.exit(0);
+                                    } else {
+                                        System.out.println("Opción no válida. Escriba 1 o 2.");
+                                    }
+                                }
+                            } else {
+                                System.out.println("Respuesta no válida. Por favor, escribe Sí o No.");
+                            }
+                        }
                     } else {
-                        archivoValido = true; // Archivo válido, salir del bucle
+                        archivoValido = true;
+                        System.out.println("Documento encontrado correctamente, procediendo con la decodificación...");
                     }
                 } catch (IOException e) {
-                    System.out.println("No se pudo leer el archivo para análisis: " + e.getMessage() + "\nPor favor, ingresa una ruta válida.");
+                    System.out.println("Documento no encontrado. Verifique la URI e intente de nuevo.\n" +
+                            "(ej: C:/Users/Nombre/archivo.txt).");
                 }
             }
+
+        } else {
+            System.out.print("\nOpción no válida. Por favor, elija 1 o 2: ");
         }
 
         int mejorClave = 0;
@@ -193,7 +237,8 @@ public class Analizador {
                 while (true) {
                     System.out.println("\n¿Desea continuar usando el programa?");
                     System.out.println("1. Sí");
-                    System.out.println("2. No");
+                    System.out.println("2. No" +
+                            "\nPor favor escriba 1 o 2 en base a su respuesta");
 
                     if (!scanner.hasNextInt()) {
                         System.out.println("Entrada no válida. Por favor, escriba 1 o 2.");
@@ -221,7 +266,8 @@ public class Analizador {
         }
         System.out.println("\n¿Desea continuar usando el programa?\n" +
                 "1. Sí\n" +
-                "2. No\n");
+                "2. No\n" +
+                "\nPor favor escriba 1 o 2 en base a su respuesta");
         while (true) {
 
             if (!scanner.hasNextInt()) {
