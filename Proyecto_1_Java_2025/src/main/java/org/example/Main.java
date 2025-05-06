@@ -22,7 +22,7 @@ public class Main {
         String answer1 = scanner.nextLine();
 
         while (true) {
-            if (answer1.equalsIgnoreCase("Si")) {
+            if (answer1.equalsIgnoreCase("Si")||answer1.equalsIgnoreCase("Sí")) {
                 System.out.println("");
                 System.out.println("Para que Entiendas:\n" +
                         "El cifrado César es uno de los métodos de cifrado más sencillos y famosos.\n" +
